@@ -21,7 +21,7 @@ public class MainMenu extends JFrame {
 
         //creation du menu - create button
         JButton play = new Button("Play");
-        play.addActionListener(e -> JOptionPane.showMessageDialog(getContentPane(), "Non Disponible !"));
+        play.addActionListener(e -> {new GameView().setVisible(true); dispose();});
         JButton setting = new Button("Settings");
         setting.addActionListener(e -> JOptionPane.showMessageDialog(getContentPane(), "Non Disponible !"));
         JButton quit = new Button("Quit Game");
@@ -60,7 +60,7 @@ public class MainMenu extends JFrame {
         constraints.anchor = GridBagConstraints.SOUTH;
         constraints.fill = GridBagConstraints.HORIZONTAL;
         constraints.insets = new Insets(0,5,5,0);
-        JLabel infoVersion = new JLabel("Version : 0.0.0");
+        JLabel infoVersion = new JLabel("Version : 0.0.1 - Snapshot 21w42a");
         infoVersion.setForeground(Color.WHITE);
         add(infoVersion, constraints);
 

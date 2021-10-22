@@ -1,4 +1,4 @@
-import view.MainMenu;
+import view.*;
 
 public class Main {
     public static void main(String[] args) {
