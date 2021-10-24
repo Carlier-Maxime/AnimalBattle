@@ -1,13 +1,13 @@
 package view;
 
+import controller.MainMenu_Controller;
+
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class MainMenu extends JFrame {
     //attribute
+    private final MainMenu_Controller controller = new MainMenu_Controller(this);
 
     //constructor
     public MainMenu(){
@@ -18,14 +18,14 @@ public class MainMenu extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         getContentPane().setBackground(Color.BLACK);
 
-
         //creation du menu - create button
         JButton play = new Button("Play");
-        play.addActionListener(e -> {new GameView().setVisible(true); dispose();});
+        play.addActionListener(e -> controller.play());
         JButton setting = new Button("Settings");
-        setting.addActionListener(e -> JOptionPane.showMessageDialog(getContentPane(), "Non Disponible !"));
+        setting.addActionListener(e -> controller.setting());
         JButton quit = new Button("Quit Game");
-        quit.addActionListener(e -> System.exit(0));
+        quit.addActionListener(e -> controller.exit());
+
         //creation du menu - layout
         setLayout(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
@@ -43,6 +43,7 @@ public class MainMenu extends JFrame {
         constraints.gridx = 1;
         constraints.weightx = 0.4;
         constraints.insets = new Insets(50,0,50,0);
+
         //creation du menu - add button + title
         JLabel title = new JLabel("Animal Battle", SwingConstants.CENTER);
         title.setFont(new Font("Serif", Font.BOLD, 72));
@@ -52,10 +53,12 @@ public class MainMenu extends JFrame {
         add(setting, constraints);
         constraints.insets = new Insets(50,0,250,0);
         add(quit, constraints);
+
         //creation du menu - add information Version
         constraints.gridx = 0;
         constraints.weightx = 1;
         constraints.gridy = 3;
+
         //constraints.weighty = 0;
         constraints.anchor = GridBagConstraints.SOUTH;
         constraints.fill = GridBagConstraints.HORIZONTAL;
@@ -64,8 +67,9 @@ public class MainMenu extends JFrame {
         infoVersion.setForeground(Color.WHITE);
         add(infoVersion, constraints);
 
-        //finition (Show windows)
+        //set visible and focus
         setVisible(true);
+        controller.focus();
     }
 
     //methode
