@@ -1,5 +1,6 @@
 package controller;
 
+import model.Model;
 import view.GameView;
 
 import javax.swing.*;
@@ -9,6 +10,16 @@ import java.awt.event.KeyEvent;
 public class MainMenu_Controller extends Controller{
     public MainMenu_Controller(Container view) {
         super(view);
+    }
+
+    @Override
+    public Model getModel() {
+        return null;
+    }
+
+    @Override
+    public void setModel(Model model) {
+        //empty
     }
 
     @Override

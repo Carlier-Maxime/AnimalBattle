@@ -1,5 +1,6 @@
 package controller;
 
+import model.Model;
 import view.MainMenu;
 
 import javax.swing.*;
@@ -12,6 +13,16 @@ public class PauseController extends Controller{
     //constructor
     public PauseController(Container view) {
         super(view);
+    }
+
+    @Override
+    public Model getModel() {
+        return null;
+    }
+
+    @Override
+    public void setModel(Model model) {
+        //empty
     }
 
     //methode

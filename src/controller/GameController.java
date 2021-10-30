@@ -1,18 +1,31 @@
 package controller;
 
+import model.Level;
+import model.Model;
 import view.PauseView;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 public class GameController extends Controller{
     //attribute
+    private Level model;
 
     //constructor
-    public GameController(Container view) {
+    public GameController(Container view, Level model) {
         super(view);
+        this.model = model;
+    }
+
+    @Override
+    public Model getModel() {
+        return model;
+    }
+
+    @Override
+    public void setModel(Model model) {
+        this.model = (Level) model;
     }
 
     //methode
@@ -25,6 +38,14 @@ public class GameController extends Controller{
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_ESCAPE){
             pause();
+        } if (e.getKeyCode() == KeyEvent.VK_LEFT){
+            model.moveCharacter(-1,0);
+        } if (e.getKeyCode() == KeyEvent.VK_UP){
+            model.moveCharacter(0,-1);
+        } if (e.getKeyCode() == KeyEvent.VK_RIGHT){
+            model.moveCharacter(1,0);
+        } if (e.getKeyCode() == KeyEvent.VK_DOWN){
+            model.moveCharacter(0,1);
         }
     }
 
