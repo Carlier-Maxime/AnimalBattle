@@ -1,6 +1,5 @@
 package controller;
 
-import model.Level;
 import model.Model;
 import view.PauseView;
 
@@ -9,49 +8,43 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class GameController extends Controller{
-    //attribute
-    private Level model;
+    private Controller controllerChild;
 
-    //constructor
-    public GameController(Container view, Level model) {
+    public GameController(Container view) {
         super(view);
-        this.model = model;
+        controllerChild = null;
     }
 
     @Override
     public Model getModel() {
-        return model;
+        return null;
     }
 
     @Override
     public void setModel(Model model) {
-        this.model = (Level) model;
+
     }
 
-    //methode
     @Override
     public void keyTyped(KeyEvent e) {
-
+        controllerChild.keyTyped(e);
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_ESCAPE){
+        if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
             pause();
-        } if (e.getKeyCode() == KeyEvent.VK_LEFT){
-            model.moveCharacter(-1,0);
-        } if (e.getKeyCode() == KeyEvent.VK_UP){
-            model.moveCharacter(0,-1);
-        } if (e.getKeyCode() == KeyEvent.VK_RIGHT){
-            model.moveCharacter(1,0);
-        } if (e.getKeyCode() == KeyEvent.VK_DOWN){
-            model.moveCharacter(0,1);
         }
+        controllerChild.keyPressed(e);
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
+        controllerChild.keyReleased(e);
+    }
 
+    public void setControllerChild(Controller controller){
+        this.controllerChild = controller;
     }
 
     public void pause(){

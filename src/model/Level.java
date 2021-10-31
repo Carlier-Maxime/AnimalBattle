@@ -1,12 +1,11 @@
 package model;
 
 import controller.Controller;
-import view.GameView;
+import view.GamePanel;
 import view.View;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Scanner;
 
 public class Level implements Model{
@@ -14,7 +13,7 @@ public class Level implements Model{
     private ArrayList<ArrayList<Integer>> array;
     private ArrayList<Animal> animal;
     private Character character;
-    private GameView view;
+    private GamePanel view;
     private Controller controller;
 
     //constructor
@@ -54,7 +53,7 @@ public class Level implements Model{
 
     @Override
     public void setView(View view) {
-        this.view = (GameView) view;
+        this.view = (GamePanel) view;
     }
 
     @Override
@@ -63,14 +62,18 @@ public class Level implements Model{
     }
 
     public void moveCharacter(int offsetX, int offsetY){
+        String direction;
+        if (offsetX == -1){direction = "left";}
+        else if (offsetX == 1){direction = "right";}
+        else if (offsetY == -1){direction = "up";}
+        else {direction = "down";}
         int[] oldPos = character.getLocation();
         int[] newPos = new int[]{oldPos[0]+offsetX, oldPos[1]+offsetY};
         if (newPos[0] < 0 || newPos[0] > array.get(0).size()-1 || newPos[1] < 0 || newPos[1] > array.size()-1){
             return;
         } //if (array.get(newPos[1]).get(newPos[0]) == ) //A completer
         character.setLocation(newPos);
-        System.out.println("newPos = "+newPos[0]+", "+newPos[1]);
-        view.updateCharacter(character, oldPos);
+        view.updateCharacter(character, oldPos, direction);
     }
 
     public Character getCharacter() {

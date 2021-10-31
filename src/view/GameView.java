@@ -2,70 +2,60 @@ package view;
 
 import controller.Controller;
 import controller.GameController;
-import model.Animal;
-import model.Character;
-import model.Level;
 import model.Model;
-
 import javax.swing.*;
 import java.awt.*;
 
 public class GameView extends JFrame implements View{
     //attribute
-    private Level model;
-    private Controller controller;
+    private GameController controller;
 
     //constructor
-    public GameView(Level model){
+    public GameView(){
         //initialisation (title, size, closeOperation, background, controller, model)
         super("Animal Battle");
-        this.model = model; // model
-        this.model.setView(this);
-        this.controller = new GameController(getContentPane(), model);
-        this.model.setController(this.controller);
+        this.controller = new GameController(this.getContentPane());
         setExtendedState(MAXIMIZED_BOTH);
         setUndecorated(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-
-        //preparation du GamePanel
+        //Overlay
         setLayout(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.fill = GridBagConstraints.BOTH;
+        constraints.insets = new Insets(0,-8,0,-8);
         constraints.weightx=1;
         constraints.weighty=1;
         JPanel overlay = new JPanel();
         overlay.setLayout(new OverlayLayout(overlay));
         add(overlay, constraints);
-        JPanel GamePanel = new JPanel();
-        GamePanel.setLayout(new GridBagLayout());
-        overlay.add(GamePanel, constraints);
-        GamePanel.setBounds(0,0,getWidth(),getHeight());
-
-        //affichage de la grille
-        for (int y=0; y<model.getArray().size(); y++){
-            for (int x=0; x<model.getArray().get(y).size(); x++){
-                constraints.gridy = y;
-                constraints.gridx = x;
-                Integer caze = model.getArray().get(y).get(x);
-                JPanel pan1 = new JPanel();
-                pan1.setLayout(new GridBagLayout());
-                switch (caze) {
-                    case 0 -> pan1.setBackground(Color.green);
-                    case 1 -> pan1.setBackground(new Color(7, 68, 1));
-                    default -> pan1.setBackground(Color.white);
-                }
-                GamePanel.add(pan1, constraints);
-            }
-        }
-        updateCharacter(model.getCharacter(), null);
+        //Preparation GamePanel
+        JPanel hbox = new JPanel();
+        hbox.setLayout(new GridBagLayout());
+        GridBagConstraints c = new GridBagConstraints();
+        c.fill = GridBagConstraints.BOTH;
+        c.insets = new Insets(-1,-1,-1,-1);
+        Dimension dim = getToolkit().getScreenSize();
+        c.weightx = ((dim.width-dim.height)/2.0)/dim.height;
+        c.weighty = 1;
+        c.gridx = 0;
+        JPanel leftPan = new JPanel();
+        leftPan.setBackground(Color.BLACK);
+        hbox.add(leftPan, c);
+        c.gridx = 2;
+        JPanel rightPan = new JPanel();
+        rightPan.setBackground(Color.BLACK);
+        hbox.add(rightPan, c);
+        c.gridx = 1;
+        c.weightx = 1;
+        overlay.add(hbox, constraints);
+        //GamePanel
+        GamePanel gamePanel = new GamePanel();
+        hbox.add(gamePanel, c);
+        this.controller.setControllerChild(gamePanel.getController());
 
         //set visibile and focus
         setVisible(true);
         controller.focus();
-    }
-
-    public GameView(){
-        this(new Level("level_0_0.txt"));
     }
 
     //methode
@@ -80,7 +70,7 @@ public class GameView extends JFrame implements View{
 
     @Override
     public Model getModel() {
-        return model;
+        return null;
     }
 
     @Override
@@ -90,39 +80,15 @@ public class GameView extends JFrame implements View{
 
     @Override
     public void setModel(Model model) {
-        this.model = (Level) model;
+        // empty
     }
 
     @Override
     public void setController(Controller controller) {
-        this.controller = controller;
-    }
-
-    public void updateAnimal(Animal animal, int[] oldPos){
-        if (oldPos != null && oldPos[0] >= 0 && oldPos[1] >= 0){
-            getCase(oldPos).remove(0);
-        }
-        GridBagConstraints c = new GridBagConstraints();
-        c.fill = GridBagConstraints.BOTH;
-        c.weightx = 1;
-        c.weighty = 1;
-        JPanel pan = new JPanel();
-        pan.setBackground(Color.RED);
-        getCase(animal.getLocation()).add(pan, c);
-
-        revalidate();
-        repaint();
-    }
-
-    public void updateCharacter(Character character, int[] oldPos){
-        updateAnimal(character, oldPos);
+        this.controller = (GameController) controller;
     }
 
     public JPanel getGamePanel(){
         return ((JPanel) ((JPanel) getContentPane().getComponent(0)).getComponent(0));
-    }
-
-    public JPanel getCase(int[] position){
-        return (JPanel) getGamePanel().getComponent(position[1]*model.getArray().get(0).size()+position[0]);
     }
 }
