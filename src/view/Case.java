@@ -12,10 +12,15 @@ public class Case extends JPanel {
     public Case(String imgLink) {
         try {
             this.bufImg = ImageIO.read(new File(imgLink));
+            setOpaque(false);
         } catch (Exception e){
             System.out.println(e.getMessage());
             System.exit(1);
         }
+    }
+
+    public Case(BufferedImage bufImg) {
+        this.bufImg = bufImg;
     }
 
     @Override

@@ -18,6 +18,7 @@ public class GamePanel extends JPanel implements View{
         this.level = level;
         this.level.setView(this);
         this.controller = new GamePanelController(this, level);
+        setBackground(Color.BLACK);
         setLayout(new GridBagLayout());
         //affichage de la grille
         GridBagConstraints constraints = new GridBagConstraints();
@@ -38,6 +39,13 @@ public class GamePanel extends JPanel implements View{
                 JPanel pan = new Case(imgLink);
                 pan.setLayout(new GridBagLayout());
                 add(pan, constraints);
+                JPanel pan2 = new JPanel();
+                pan2.setOpaque(false);
+                GridBagConstraints c = new GridBagConstraints();
+                c.fill = 1;
+                c.weightx = 1;
+                c.weighty = 1;
+                pan.add(pan2, c);
             }
         }
         updateCharacter(level.getCharacter(), null, "right");
@@ -48,15 +56,19 @@ public class GamePanel extends JPanel implements View{
     }
 
     public void updateAnimal(Animal animal, int[] oldPos, String direction){
-        if (oldPos != null && oldPos[0] >= 0 && oldPos[1] >= 0){
-            getCase(oldPos).remove(0);
-        }
         GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.BOTH;
         c.weightx = 1;
         c.weighty = 1;
-        JPanel pan = new Case("src/data/texture/dog/dog_"+direction+".png");
+        if (oldPos != null && oldPos[0] >= 0 && oldPos[1] >= 0){
+            getCase(oldPos).remove(0);
+            JPanel pan = new JPanel();
+            pan.setOpaque(false);
+            getCase(oldPos).add(pan, c);
+        }
+        JPanel pan = new Case(animal.getIcon(direction));
         pan.setOpaque(false);
+        getCase(animal.getLocation()).remove(0);
         getCase(animal.getLocation()).add(pan, c);
 
         revalidate();

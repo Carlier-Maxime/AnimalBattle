@@ -1,6 +1,10 @@
 package model;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Objects;
 
 public abstract class Animal {
@@ -34,5 +38,22 @@ public abstract class Animal {
 
     public void setLocation(int[] location) {
         this.location = location;
+    }
+
+    public BufferedImage getIcon(String direction){
+        try {
+            String name = getClass().getSimpleName().toLowerCase(Locale.ROOT);
+            if (name.equals("character")){name = "dog";}
+            String imgLink = "src/data/texture/"+name+"/"+name+"_"+direction+".png";
+            return ImageIO.read(new File(imgLink));
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+            System.exit(1);
+        }
+        return null;
+    }
+
+    public BufferedImage getIcon(){
+        return getIcon("right");
     }
 }

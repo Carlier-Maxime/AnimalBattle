@@ -22,7 +22,7 @@ public class GameView extends JFrame implements View{
         setLayout(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.fill = GridBagConstraints.BOTH;
-        constraints.insets = new Insets(0,-8,0,-8);
+        constraints.insets = new Insets(-5,-6,-5,-6);
         constraints.weightx=1;
         constraints.weighty=1;
         JPanel overlay = new JPanel();

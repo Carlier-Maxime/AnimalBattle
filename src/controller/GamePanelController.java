@@ -41,6 +41,8 @@ public class GamePanelController extends Controller{
             model.moveCharacter(1,0);
         } if (e.getKeyCode() == KeyEvent.VK_DOWN){
             model.moveCharacter(0,1);
+        } if (e.getKeyCode() == KeyEvent.VK_A){
+            model.addAnimal();
         }
     }
 

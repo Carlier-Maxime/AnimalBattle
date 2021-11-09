@@ -55,7 +55,6 @@ public class GameController extends Controller{
         PauseView pauseView = new PauseView();
         JPanel overlay = (JPanel) view.getComponent(0);
         overlay.add(pauseView, constraints);
-        pauseView.setBounds(0,0,view.getWidth(),view.getHeight());
         view.revalidate();
         pauseView.requestFocusInWindow();
     }
