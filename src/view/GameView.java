@@ -3,6 +3,8 @@ package view;
 import controller.Controller;
 import controller.GameController;
 import model.Model;
+import model.Utils;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -20,23 +22,18 @@ public class GameView extends JFrame implements View{
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         //Overlay
         setLayout(new GridBagLayout());
-        GridBagConstraints constraints = new GridBagConstraints();
-        constraints.fill = GridBagConstraints.BOTH;
+        GridBagConstraints constraints = Utils.initConstraints();
         constraints.insets = new Insets(-5,-6,-5,-6);
-        constraints.weightx=1;
-        constraints.weighty=1;
         JPanel overlay = new JPanel();
         overlay.setLayout(new OverlayLayout(overlay));
         add(overlay, constraints);
         //Preparation GamePanel
         JPanel hbox = new JPanel();
         hbox.setLayout(new GridBagLayout());
-        GridBagConstraints c = new GridBagConstraints();
-        c.fill = GridBagConstraints.BOTH;
+        GridBagConstraints c = Utils.initConstraints();
         c.insets = new Insets(-1,-1,-1,-1);
         Dimension dim = getToolkit().getScreenSize();
         c.weightx = ((dim.width-dim.height)/2.0)/dim.height;
-        c.weighty = 1;
         c.gridx = 0;
         JPanel leftPan = new JPanel();
         leftPan.setBackground(Color.BLACK);

@@ -3,6 +3,7 @@ package view;
 import controller.Controller;
 import controller.GameController;
 import controller.PauseController;
+import model.Utils;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,10 +20,7 @@ public class PauseView extends JPanel {
 
         //preparation du layout et de ces contraintes
         setLayout(new GridBagLayout());
-        GridBagConstraints constraints = new GridBagConstraints();
-        constraints.fill = GridBagConstraints.BOTH;
-        constraints.weightx = 1;
-        constraints.weighty = 1;
+        GridBagConstraints constraints = Utils.initConstraints();
         constraints.gridx = 0;
 
         //Preparation pour centrer les button

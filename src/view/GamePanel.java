@@ -2,10 +2,8 @@ package view;
 
 import controller.Controller;
 import controller.GamePanelController;
-import model.Animal;
+import model.*;
 import model.Character;
-import model.Level;
-import model.Model;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,30 +19,24 @@ public class GamePanel extends JPanel implements View{
         setBackground(Color.BLACK);
         setLayout(new GridBagLayout());
         //affichage de la grille
-        GridBagConstraints constraints = new GridBagConstraints();
-        constraints.fill = GridBagConstraints.BOTH;
-        constraints.weightx = 1;
-        constraints.weighty = 1;
+        GridBagConstraints constraints = Utils.initConstraints();
         for (int y=0; y<level.getArray().size(); y++){
             for (int x=0; x<level.getArray().get(y).size(); x++){
                 constraints.gridy = y;
                 constraints.gridx = x;
                 Integer caze = level.getArray().get(y).get(x);
-                String imgLink = "src/data/texture/";
+                String imgLink = Utils.PATH_TEXTURE;
                 switch (caze) {
-                    case 0 : imgLink += "plaine.jpg"; break;
-                    case 1 : imgLink += "foret.jpg"; break;
-                    default : imgLink += "error.jpg"; break;
+                    case 0 : imgLink += "/plaine.jpg"; break;
+                    case 1 : imgLink += "/foret.jpg"; break;
+                    default : imgLink += "/error.jpg"; break;
                 }
                 JPanel pan = new Case(imgLink);
                 pan.setLayout(new GridBagLayout());
                 add(pan, constraints);
                 JPanel pan2 = new JPanel();
                 pan2.setOpaque(false);
-                GridBagConstraints c = new GridBagConstraints();
-                c.fill = 1;
-                c.weightx = 1;
-                c.weighty = 1;
+                GridBagConstraints c = Utils.initConstraints();
                 pan.add(pan2, c);
             }
         }
@@ -56,10 +48,7 @@ public class GamePanel extends JPanel implements View{
     }
 
     public void updateAnimal(Animal animal, int[] oldPos, String direction){
-        GridBagConstraints c = new GridBagConstraints();
-        c.fill = GridBagConstraints.BOTH;
-        c.weightx = 1;
-        c.weighty = 1;
+        GridBagConstraints c = Utils.initConstraints();
         if (oldPos != null && oldPos[0] >= 0 && oldPos[1] >= 0){
             getCase(oldPos).remove(0);
             JPanel pan = new JPanel();

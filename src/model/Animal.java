@@ -15,6 +15,7 @@ public abstract class Animal {
     private ArrayList<IMovingStrategy> movingStrat;
     private ArrayList<ICombatStrategy> combatStrat;
     private int[] location;
+    private String pathTexture;
 
     //constructor
     public Animal(String name, int health, int energy, ArrayList<IMovingStrategy> movingStrat, ArrayList<ICombatStrategy> combatStrat) {
@@ -25,6 +26,10 @@ public abstract class Animal {
         this.movingStrat = movingStrat;
         this.combatStrat = combatStrat;
         this.location = new int[]{0,0};
+
+        String nameFolder = getClass().getSimpleName().toLowerCase(Locale.ROOT);
+        if (nameFolder.equals("character")){nameFolder = "dog";}
+        pathTexture =  Utils.PATH_TEXTURE+"/animals/"+nameFolder;
     }
 
     public Animal() {
@@ -44,7 +49,7 @@ public abstract class Animal {
         try {
             String name = getClass().getSimpleName().toLowerCase(Locale.ROOT);
             if (name.equals("character")){name = "dog";}
-            String imgLink = "src/data/texture/animals/"+name+"/"+name+"_"+direction+".png";
+            String imgLink = pathTexture+"/"+name+"_"+direction+".png";
             return ImageIO.read(new File(imgLink));
         } catch (Exception e){
             System.out.println(e.getMessage());

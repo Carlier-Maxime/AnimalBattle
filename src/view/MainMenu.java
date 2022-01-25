@@ -1,6 +1,7 @@
 package view;
 
 import controller.MainMenu_Controller;
+import model.Utils;
 
 import javax.swing.*;
 import java.awt.*;
@@ -28,10 +29,7 @@ public class MainMenu extends JFrame {
 
         //creation du menu - layout
         setLayout(new GridBagLayout());
-        GridBagConstraints constraints = new GridBagConstraints();
-        constraints.fill = GridBagConstraints.BOTH;
-        constraints.weightx = 1;
-        constraints.weighty = 1.0;
+        GridBagConstraints constraints = Utils.initConstraints();
         constraints.gridx = 0;
         JPanel pan = new JPanel();
         pan.setOpaque(false);
