@@ -47,9 +47,7 @@ public abstract class Animal {
 
     public BufferedImage getIcon(String direction){
         try {
-            String name = getClass().getSimpleName().toLowerCase(Locale.ROOT);
-            if (name.equals("character")){name = "dog";}
-            String imgLink = pathTexture+"/"+name+"_"+direction+".png";
+            String imgLink = pathTexture+"/"+direction+".png";
             return ImageIO.read(new File(imgLink));
         } catch (Exception e){
             System.out.println(e.getMessage());
