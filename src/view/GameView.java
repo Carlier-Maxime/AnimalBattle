@@ -2,6 +2,7 @@ package view;
 
 import controller.Controller;
 import controller.GameController;
+import model.Level;
 import model.Model;
 import model.Utils;
 
@@ -49,6 +50,7 @@ public class GameView extends JFrame implements View{
         GamePanel gamePanel = new GamePanel();
         hbox.add(gamePanel, c);
         this.controller.setControllerChild(gamePanel.getController());
+        hbox.add(new InfoCharacter(((Level) gamePanel.getModel()).getCharacter()), c);
 
         //set visibile and focus
         setVisible(true);
