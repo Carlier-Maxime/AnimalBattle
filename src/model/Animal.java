@@ -44,7 +44,7 @@ public abstract class Animal {
         try {
             String name = getClass().getSimpleName().toLowerCase(Locale.ROOT);
             if (name.equals("character")){name = "dog";}
-            String imgLink = "src/data/texture/"+name+"/"+name+"_"+direction+".png";
+            String imgLink = "src/data/texture/animals/"+name+"/"+name+"_"+direction+".png";
             return ImageIO.read(new File(imgLink));
         } catch (Exception e){
             System.out.println(e.getMessage());

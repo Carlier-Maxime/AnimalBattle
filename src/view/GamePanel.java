@@ -32,9 +32,9 @@ public class GamePanel extends JPanel implements View{
                 Integer caze = level.getArray().get(y).get(x);
                 String imgLink = "src/data/texture/";
                 switch (caze) {
-                    case 0 -> imgLink += "plaine.jpg";
-                    case 1 -> imgLink += "foret.jpg";
-                    default -> imgLink += "error.jpg";
+                    case 0 : imgLink += "plaine.jpg"; break;
+                    case 1 : imgLink += "foret.jpg"; break;
+                    default : imgLink += "error.jpg"; break;
                 }
                 JPanel pan = new Case(imgLink);
                 pan.setLayout(new GridBagLayout());
