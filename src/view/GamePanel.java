@@ -55,7 +55,7 @@ public class GamePanel extends JPanel implements View{
             pan.setOpaque(false);
             getCase(oldPos).add(pan, c);
         }
-        JPanel pan = new Case(animal.getIcon(direction));
+        JPanel pan = new Case(animal.getImg(direction));
         pan.setOpaque(false);
         getCase(animal.getLocation()).remove(0);
         getCase(animal.getLocation()).add(pan, c);

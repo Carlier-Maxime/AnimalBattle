@@ -45,7 +45,7 @@ public abstract class Animal {
         this.location = location;
     }
 
-    public BufferedImage getIcon(String direction){
+    public BufferedImage getImg(String direction){
         try {
             String imgLink = pathTexture+"/"+direction+".png";
             return ImageIO.read(new File(imgLink));
@@ -56,7 +56,28 @@ public abstract class Animal {
         return null;
     }
 
-    public BufferedImage getIcon(){
-        return getIcon("right");
+    public BufferedImage getImg(){
+        return getImg("right");
+    }
+
+    public BufferedImage getIcon() {
+        try {
+            return ImageIO.read(new File(pathTexture+"/icon.png"));
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public int getEnergy() {
+        return energy;
     }
 }
