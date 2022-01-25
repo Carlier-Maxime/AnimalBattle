@@ -63,7 +63,7 @@ public class MainMenu extends JFrame {
         constraints.anchor = GridBagConstraints.SOUTH;
         constraints.fill = GridBagConstraints.HORIZONTAL;
         constraints.insets = new Insets(0,5,5,0);
-        JLabel infoVersion = new JLabel("Version : 0.0.4");
+        JLabel infoVersion = new JLabel("Version : 0.0.5");
         infoVersion.setForeground(Color.WHITE);
         add(infoVersion, constraints);
 
