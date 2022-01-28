@@ -23,6 +23,11 @@ public class MainMenu_Controller extends Controller{
     }
 
     @Override
+    public void loadSetting() {
+
+    }
+
+    @Override
     public void keyTyped(KeyEvent e) {
 
     }

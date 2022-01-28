@@ -26,6 +26,11 @@ public class GameController extends Controller{
     }
 
     @Override
+    public void loadSetting() {
+
+    }
+
+    @Override
     public void keyTyped(KeyEvent e) {
         controllerChild.keyTyped(e);
     }

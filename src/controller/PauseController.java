@@ -25,6 +25,11 @@ public class PauseController extends Controller{
         //empty
     }
 
+    @Override
+    public void loadSetting() {
+
+    }
+
     //methode
     @Override
     public void keyTyped(KeyEvent e) {

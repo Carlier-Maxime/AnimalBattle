@@ -39,7 +39,7 @@ public class Utils {
         return null;
     }
 
-    public int[] getIntSetting(String name){
+    public static int[] getIntSetting(String name){
         String[] settings = getSetting(name);
         if (settings==null) return null;
         int[] intSettings = new int[settings.length];
