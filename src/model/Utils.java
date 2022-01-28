@@ -4,7 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Utils {
-    public static final String PATH_TEXTURE = "src/data/texture";
+    public static final String PATH_DATA = "data";
+    public static final String PATH_TEXTURE = PATH_DATA+"/texture";
     public static GridBagConstraints initConstraints(){
         GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.BOTH;

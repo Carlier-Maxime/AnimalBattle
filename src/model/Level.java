@@ -25,7 +25,7 @@ public class Level implements Model{
         array = new ArrayList<>();
         rng = new Random();
         try {
-            Scanner scnr = new Scanner(new File("src/data/"+levelName));
+            Scanner scnr = new Scanner(new File(Utils.PATH_DATA+"/"+levelName));
             while (scnr.hasNext()){
                 array.add(new ArrayList<>());
                 String line = scnr.nextLine();
