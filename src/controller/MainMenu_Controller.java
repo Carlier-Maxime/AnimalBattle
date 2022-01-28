@@ -2,6 +2,7 @@ package controller;
 
 import model.Model;
 import view.GameView;
+import view.SettingView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -51,7 +52,9 @@ public class MainMenu_Controller extends Controller{
     }
 
     public void setting(){
-        JOptionPane.showMessageDialog(((JFrame) view).getContentPane(), "Non Disponible !");
+        JFrame frame = (JFrame) view;
+        new SettingView().setVisible(true);
+        frame.dispose();
     }
 
     public void exit(){
