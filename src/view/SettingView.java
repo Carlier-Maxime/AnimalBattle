@@ -23,6 +23,7 @@ public class SettingView extends JFrame implements View {
         setExtendedState(MAXIMIZED_BOTH);
         setUndecorated(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        getContentPane().setBackground(Color.DARK_GRAY);
 
         setLayout(new GridBagLayout());
         GridBagConstraints c = Utils.initConstraints();
@@ -37,12 +38,17 @@ public class SettingView extends JFrame implements View {
         }
 
         JPanel hbox = Utils.hbox();
+        GridBagConstraints constraints = Utils.initConstraints();
+        hbox.setLayout(new GridBagLayout());
+        hbox.add(new JPanel(),constraints);
+        constraints.weightx=0.10;
         JButton back = new JButton("Back");
         back.addActionListener((evt) -> ((SettingController) controller).mainMenu());
         hbox.add(back);
         JButton apply = new JButton("Apply");
         apply.addActionListener((evt) -> apply());
         hbox.add(apply);
+        c.weighty=0.10;
         add(hbox,c);
 
         setVisible(true);

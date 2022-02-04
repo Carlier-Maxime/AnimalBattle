@@ -26,9 +26,12 @@ public class KeyActionBox extends JPanel implements View {
 
         setSize(-1,100);
         setLayout(new GridBagLayout());
+        setBackground(Color.DARK_GRAY);
         GridBagConstraints c = Utils.initConstraints();
         c.gridy=0;
-        add(new JLabel(actionName),c);
+        JLabel label = new JLabel(actionName);
+        label.setForeground(Color.WHITE);
+        add(label,c);
         for (int i=0; i<keys.length; i++){
             JButton button = new JButton(KeyEvent.getKeyText(keys[i]));
             int finalI = i;
