@@ -2,6 +2,7 @@ package controller;
 
 import model.Model;
 import view.MainMenu;
+import view.SettingView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -34,8 +35,10 @@ public class SettingController extends Controller{
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode()==KeyEvent.VK_ESCAPE){
-            mainMenu();
+        if (!((SettingView) view).editActionKeySelected(e)){
+            if (e.getKeyCode()==KeyEvent.VK_ESCAPE){
+                mainMenu();
+            }
         }
     }
 
